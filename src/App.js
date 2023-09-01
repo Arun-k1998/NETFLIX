@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import Banner from './components/banner/Banner';
+import NavBar from './components/navBar/NavBar';
+import RowPost from './components/rowpost/RowPost';
+import {Originals,Actions,Comedy,Horror} from './urls'
 function App() {
+  const rowPost = [
+    {title:'Netflix Originals',url:Originals, isSmall:false},
+    {title:'Action',url:Actions,isSmall:true},
+    {title:'Horror',url:Horror,isSmall:true},
+    {title:'Comedy',url:Comedy,isSmall:true}
+  ]
+
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar/>
+      <Banner />
+      {rowPost.map((rowPost)=>{
+        return <RowPost isSmall={rowPost.isSmall} title={rowPost.title} url={rowPost.url} />
+      })}
     </div>
   );
 }
